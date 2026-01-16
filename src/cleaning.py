@@ -13,3 +13,24 @@ def getPlayersFromIds(matches_fileloc):
         id = row['match_id']
         match_id_data[id] = (p1, p2)
     return match_id_data
+
+
+def addPlayersToPointsData(points_fileloc, matches_fileloc):
+
+    points = pd.read_csv(points_fileloc)
+    match_id_data = getPlayersFromIds(matches_fileloc)
+
+    p1_dict = {id: players[0] for id, players in match_id_data.items()}
+    p2_dict = {id: players[1] for id, players in match_id_data.items()}
+
+    points['p1'] = points['match_id'].map(p1_dict)
+    points['p2'] = points['match_id'].map(p2_dict)
+
+
+    
+    
+
+
+
+
+
